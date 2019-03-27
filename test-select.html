@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap-4.3.1/bootstrap.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="css/fontawesome/v.5.7.2/css/all.css">
+
+    <style type="text/css">
+    body {
+      padding-top: 4rem;
+    }   
+    </style>
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="bg-light">
+    
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="test-select">Test Select</label>
+          <select class="form-control" id="test-select" name="test-select">
+          <option value=""></option>            
+          </select>          
+        </div>       
+      </form>
+    </div>
+
+<!-- JavaScript -->
+<!-- jQuery -->
+<script src="js/jquery-3.3.1/jquery.js"></script>
+<!-- Popper -->
+<script src="js/popper-1.14.7/popper.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap-4.3.1/bootstrap.js"></script>
+<script>
+$( document ).ready(function() {
+  var usuarios = [];
+  console.log( "ready!" );
+  $.ajax({
+    url: "https://jsonplaceholder.typicode.com/users",    
+  }).done(function(data) {
+    usuarios = data;
+    for (i = 0; i < usuarios.length; i++)
+    { 
+         $('#test-select').append($('<option>',
+         {
+            value: usuarios[i]['id'],
+            text : usuarios[i]['name']
+        }));
+    }    
+  }); 
+
+  //https://stackoverflow.com/questions/740195/adding-options-to-a-select-using-jquery
+  // var item = new Option("option text", "value");
+  // $("#test-select").append(item);
+  // $('#test-select').append($('<option>', {
+  //   value: 1,
+  //   text: 'My option'
+  // }));
+  
+});
+</script>
+  </body>
+</html>
